@@ -32,19 +32,30 @@ struct NewTweetSheet: View {
                         .cornerRadius(20)
                 })
             }.padding()
-            HStack{
+            HStack(alignment:.top){
                 Image("profile-picture")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .cornerRadius(50)
-                TextField("Whats Happening?", text: $tweetContent)
-                    .focused($showKeyboard)
-                    .onAppear{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
-                        {
-                            showKeyboard = true
+                ZStack(alignment:.topLeading){
+                    TextEditor(text: $tweetContent)
+                        .autocorrectionDisabled()
+                        .onAppear{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
+                            {
+                                showKeyboard = true
+                                
+                            }
                         }
+                    if(tweetContent.isEmpty)
+                    {
+                        Text("Whats Happening?")
+                            .foregroundColor(.gray)
+                            .font(.body)
+                            .padding(7.2)
                     }
+                }
+                
             }.padding(.horizontal)
             Spacer()
             
