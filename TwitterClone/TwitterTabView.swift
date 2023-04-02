@@ -10,38 +10,29 @@ import SwiftUI
 struct TwitterTabView: View {
     @State private var selectedTab = 0
     var body: some View {
-        ZStack(alignment:.top){
-            TwitterTopBar()
-                    .zIndex(2)
-            VStack{
-
-                    TabView(selection: $selectedTab, content: {
-                        TwitterHomeView()
-                            .tabItem({
-                                Image(systemName: "house")
-                            })
-                            .tag(0)
-                        
-                        TwitterSearchView()
-                            .tabItem({
-                                Image(systemName: "magnifyingglass")
-                            })
-                            .tag(1)
-                        TwitterNotificationView()
-                            .tabItem({
-                                Image(systemName: "bell")
-                            })
-                            .tag(2)
-                        TwitterMessageView()
-                            .tabItem({
-                                Image(systemName: "envelope")
-                            })
-                            .tag(3)
-                    })
-            }
-        }
-        
-        
+        TabView(selection: $selectedTab, content: {
+            TwitterHomeView(tweetData: dummyData)
+                .tabItem({
+                    Image(systemName: "house")
+                })
+                .tag(0)
+            
+            TwitterSearchView()
+                .tabItem({
+                    Image(systemName: "magnifyingglass")
+                })
+                .tag(1)
+            TwitterNotificationView()
+                .tabItem({
+                    Image(systemName: "bell")
+                })
+                .tag(2)
+            TwitterMessageView()
+                .tabItem({
+                    Image(systemName: "envelope")
+                })
+                .tag(3)
+        })
         
     }
 }

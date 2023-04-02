@@ -9,20 +9,23 @@ import SwiftUI
 
 struct TwitterHomeView: View {
     @State private var isClicked = false
+    let tweetData : TweetModel
     var body: some View {
-        ZStack{
+        ZStack(alignment:.top){
+            TwitterTopBar()
+                .zIndex(2)
             ScrollView{
                 Spacer(minLength: 100)
                 ForEach(1...10, id: \.self){ _ in
                     VStack{
-                        SingleTweetView()
-                            Divider()
-                        }
+                        SingleTweetView(tweetData: tweetData)
+                        Divider()
+                    }
                 }
             }
             
-
-                
+            
+            
             VStack{
                 Spacer()
                 HStack{
@@ -51,52 +54,65 @@ struct TwitterHomeView: View {
         })
         
         
-               
+        
     }
 }
 
 struct TwitterHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterHomeView()
+        TwitterHomeView(tweetData: dummyData)
     }
 }
 
 struct SingleTweetView: View {
+    @State var heart = false
+    @State var retweet = false
+    let tweetData : TweetModel
     var body: some View {
         HStack(alignment: .top){
-            Image("profile-picture")
+            Image(tweetData.profilepicture)
                 .resizable()
                 .frame(width: 45, height: 45)
                 .cornerRadius(50)
             VStack(alignment:.leading){
                 HStack{
-                    Text("Rohit Sridharan")
+                    Text(tweetData.name)
                         .bold()
                         .font(.title3)
-                    Text("@rohit25-1")
+                    Text(tweetData.twitterId)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-                Text("This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.This Is A Generated Text.")
+                Text(tweetData.tweet)
                     .font(.body)
                     .frame(maxHeight: 100)
                 HStack(spacing: 70){
-                    Button(action: {}, label: {
+                    Button(action: {
+                        
+                    }, label: {
                         Image(systemName: "bubble.left")
+                        
                     })
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        retweet.toggle()
+                    }, label: {
                         Image(systemName: "arrow.2.squarepath")
+                            .foregroundColor(retweet ? Color("retweet") : .gray)
                     })
-                    Button(action: {}, label: {
-                        Image(systemName: "heart")
+                    Button(action: {
+                        heart.toggle()
+                    }, label: {
+                        Image(systemName: heart ? "heart.fill" : "heart")
+                            .foregroundColor(heart ? .red : .gray)
+                        
                     })
                     Button(action: {}, label: {
                         Image(systemName: "bookmark")
                     })
                 }.padding(.vertical,5)
                     .tint(.gray)
-
+                
             }
         }.padding(.horizontal,5)
     }

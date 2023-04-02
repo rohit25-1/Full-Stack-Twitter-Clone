@@ -8,8 +8,56 @@
 import SwiftUI
 
 struct TwitterSearchView: View {
+    @State var isEditing = false
+    @State var searchField = ""
     var body: some View {
-        Text("Search View")
+        ZStack(alignment: .top){
+            TwitterSearchBar(searchField: $searchField, isEditing: $isEditing)
+                .autocorrectionDisabled()
+                .zIndex(2)
+           if(!isEditing)
+            {
+               ScrollView{
+                   Spacer(minLength: 90)
+                   ForEach(1..<20, content: {_ in
+                       VStack(alignment:.leading){
+                           Text("#Template Hashtag")
+                               .font(.body)
+                               .bold()
+                           Text("18k Tweets")
+                               .foregroundColor(.gray)
+                           Divider()
+                       }.frame(width: 400, alignment: .leading)
+                           .padding(.vertical,5)
+                   })
+               }
+            }
+            else{
+                ScrollView{
+                    Spacer(minLength: 90)
+                    ForEach(1..<5, content: {_ in
+                        HStack(spacing:20){
+                            Image("profile-picture")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .cornerRadius(50)
+                            VStack(alignment: .leading){
+                                Text("Rohit Sridharan")
+                                    .font(.title3)
+                                    .bold()
+                                Text("@rohit25-1")
+                                    .foregroundColor(.gray)
+                            }
+                        }.frame(width: 400, height: 90, alignment:(.leading))
+                        
+                            
+                    })
+                }
+            }
+            
+            
+
+        }
     }
 }
 

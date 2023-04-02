@@ -18,6 +18,7 @@
 		F997D4F029D36E9300A6F141 /* TwitterNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4EF29D36E9300A6F141 /* TwitterNotificationView.swift */; };
 		F997D4F229D36EA000A6F141 /* TwitterMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4F129D36EA000A6F141 /* TwitterMessageView.swift */; };
 		F997D4F629D378E100A6F141 /* NewTweetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4F529D378E100A6F141 /* NewTweetSheet.swift */; };
+		F9A6231629D84DAE0052781C /* TwitterSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		F997D4EF29D36E9300A6F141 /* TwitterNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterNotificationView.swift; sourceTree = "<group>"; };
 		F997D4F129D36EA000A6F141 /* TwitterMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMessageView.swift; sourceTree = "<group>"; };
 		F997D4F529D378E100A6F141 /* NewTweetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetSheet.swift; sourceTree = "<group>"; };
+		F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				F997D4EF29D36E9300A6F141 /* TwitterNotificationView.swift */,
 				F997D4F129D36EA000A6F141 /* TwitterMessageView.swift */,
 				F918F87429D76D6800C73580 /* TwitterTopBar.swift */,
+				F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */,
 			);
 			path = TwitterViews;
 			sourceTree = "<group>";
@@ -128,6 +131,8 @@
 			dependencies = (
 			);
 			name = TwitterClone;
+			packageProductDependencies = (
+			);
 			productName = TwitterClone;
 			productReference = F997D4DA29D3678B00A6F141 /* TwitterClone.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +161,8 @@
 				Base,
 			);
 			mainGroup = F997D4D129D3678B00A6F141;
+			packageReferences = (
+			);
 			productRefGroup = F997D4DB29D3678B00A6F141 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,6 +198,7 @@
 				F918F87829D7713900C73580 /* TweetModel.swift in Sources */,
 				F997D4F629D378E100A6F141 /* NewTweetSheet.swift in Sources */,
 				F997D4EC29D36E7400A6F141 /* TwitterHomeView.swift in Sources */,
+				F9A6231629D84DAE0052781C /* TwitterSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
