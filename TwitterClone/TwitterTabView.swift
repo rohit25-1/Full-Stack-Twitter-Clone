@@ -9,30 +9,36 @@ import SwiftUI
 
 struct TwitterTabView: View {
     @State private var selectedTab = 0
+    @State var isOpen = false
     var body: some View {
+        
         TabView(selection: $selectedTab, content: {
-            TwitterHomeView(tweetData: dummyData)
+            TwitterHomeView(isProfilePictureClicked: $isOpen, tweetData: dummyData)
                 .tabItem({
                     Image(systemName: "house")
                 })
                 .tag(0)
             
-            TwitterSearchView()
+            TwitterSearchView(isProfilePictureClicked: $isOpen)
                 .tabItem({
                     Image(systemName: "magnifyingglass")
                 })
                 .tag(1)
-            TwitterNotificationView()
+            TwitterNotificationView(isProfilePictureClicked: $isOpen)
                 .tabItem({
                     Image(systemName: "bell")
                 })
                 .tag(2)
-            TwitterMessageView()
+            TwitterMessageView(isProfilePictureClicked: $isOpen)
                 .tabItem({
                     Image(systemName: "envelope")
                 })
                 .tag(3)
         })
+        .overlay(content: {
+            TwitterSideView(isOpen: $isOpen)
+        })
+        
         
     }
 }

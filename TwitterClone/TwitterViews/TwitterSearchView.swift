@@ -10,27 +10,29 @@ import SwiftUI
 struct TwitterSearchView: View {
     @State var isEditing = false
     @State var searchField = ""
+    @FocusState private var isFocused : Bool
+    @Binding var isProfilePictureClicked : Bool
     var body: some View {
         ZStack(alignment: .top){
-            TwitterSearchBar(searchField: $searchField, isEditing: $isEditing)
+            TwitterSearchBar(searchField: $searchField, isEditing: $isEditing, isClicked: $isProfilePictureClicked)
                 .autocorrectionDisabled()
                 .zIndex(2)
-           if(!isEditing)
+            if(!isEditing)
             {
-               ScrollView{
-                   Spacer(minLength: 90)
-                   ForEach(1..<20, content: {_ in
-                       VStack(alignment:.leading){
-                           Text("#Template Hashtag")
-                               .font(.body)
-                               .bold()
-                           Text("18k Tweets")
-                               .foregroundColor(.gray)
-                           Divider()
-                       }.frame(width: 400, alignment: .leading)
-                           .padding(.vertical,5)
-                   })
-               }
+                ScrollView{
+                    Spacer(minLength: 90)
+                    ForEach(1..<20, content: {_ in
+                        VStack(alignment:.leading){
+                            Text("#Template Hashtag")
+                                .font(.body)
+                                .bold()
+                            Text("18k Tweets")
+                                .foregroundColor(.gray)
+                            Divider()
+                        }.frame(width: UIScreen.main.bounds.width-30, alignment: .leading)
+                            .padding(.vertical,5)
+                    })
+                }
             }
             else{
                 ScrollView{
@@ -48,21 +50,31 @@ struct TwitterSearchView: View {
                                 Text("@rohit25-1")
                                     .foregroundColor(.gray)
                             }
-                        }.frame(width: 400, height: 90, alignment:(.leading))
+                        }.frame(width: UIScreen.main.bounds.width-20, height: 90, alignment:(.leading))
                         
-                            
+                        
                     })
                 }
             }
             
             
-
+            
+        }
+        .onTapGesture {
+            if(isProfilePictureClicked == true)
+            {
+                withAnimation(.linear(duration: 0.2))
+                {
+                    isProfilePictureClicked = false
+                }
+                
+            }
         }
     }
 }
 
 struct TwitterSearchVieew_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterSearchView()
+        TwitterSearchView(isProfilePictureClicked: .constant(false))
     }
 }

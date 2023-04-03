@@ -8,21 +8,26 @@
 import SwiftUI
 
 struct TwitterTopBar: View {
+    @Binding var isClicked : Bool
     var body: some View {
         ZStack{
             Rectangle()
                 .fill(.regularMaterial)
                 .ignoresSafeArea()
-                .frame(width: .infinity, height: 72)
+                .frame(width: UIScreen.main.bounds.width, height: 72)
                 .zIndex(1)
-                
+            
             HStack{
                 Button(action: {
+                    withAnimation(.linear(duration: 0.2))
+                    {
+                        isClicked = true
+                    }
                     
                 }, label: {
                     Image("profile-picture")
                         .resizable()
-                        .frame(width: 35, height: 35)
+                        .frame(width: 40, height: 40)
                         .cornerRadius(50)
                 }).padding()
                 Spacer()
@@ -39,6 +44,6 @@ struct TwitterTopBar: View {
 
 struct TwitterTopBar_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterTopBar()
+        TwitterTopBar(isClicked: .constant(false))
     }
 }

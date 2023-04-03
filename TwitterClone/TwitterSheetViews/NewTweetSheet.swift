@@ -66,5 +66,6 @@ struct NewTweetSheet: View {
 struct NewTweetSheet_Previews: PreviewProvider {
     static var previews: some View {
         NewTweetSheet(isClosed: .constant(false))
+            .preferredColorScheme(.dark)
     }
 }
