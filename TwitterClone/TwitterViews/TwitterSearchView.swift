@@ -12,6 +12,7 @@ struct TwitterSearchView: View {
     @State var searchField = ""
     @FocusState private var isFocused : Bool
     @Binding var isProfilePictureClicked : Bool
+    let hashtags : HashtagModel
     var body: some View {
         ZStack(alignment: .top){
             TwitterSearchBar(searchField: $searchField, isEditing: $isEditing, isClicked: $isProfilePictureClicked)
@@ -23,10 +24,10 @@ struct TwitterSearchView: View {
                     Spacer(minLength: 90)
                     ForEach(1..<20, content: {_ in
                         VStack(alignment:.leading){
-                            Text("#Template Hashtag")
+                            Text("#"+hashtags.hashtag)
                                 .font(.body)
                                 .bold()
-                            Text("18k Tweets")
+                            Text(hashtags.count+" Tweets")
                                 .foregroundColor(.gray)
                             Divider()
                         }.frame(width: UIScreen.main.bounds.width-30, alignment: .leading)
@@ -41,7 +42,7 @@ struct TwitterSearchView: View {
                         HStack(spacing:20){
                             Image("profile-picture")
                                 .resizable()
-                                .frame(width: 60, height: 60)
+                                .frame(width: 50, height: 50)
                                 .cornerRadius(50)
                             VStack(alignment: .leading){
                                 Text("Rohit Sridharan")
@@ -75,6 +76,6 @@ struct TwitterSearchView: View {
 
 struct TwitterSearchVieew_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterSearchView(isProfilePictureClicked: .constant(false))
+        TwitterSearchView(isProfilePictureClicked: .constant(false), hashtags: dummyHashtag)
     }
 }

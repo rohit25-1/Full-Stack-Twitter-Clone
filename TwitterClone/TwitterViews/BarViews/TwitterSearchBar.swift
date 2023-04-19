@@ -21,32 +21,43 @@ struct TwitterSearchBar: View {
                 .zIndex(1)
             
             HStack{
-                Button(action: {
-                    withAnimation(.linear(duration: 0.2))
-                    {
-                        isClicked = true
-                    }
-                }, label: {
-                    Image("profile-picture")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(50)
-                    
-                }).padding()
-                Spacer()
+                if(!isEditing)
+                {
+                    Button(action: {
+                        withAnimation(.linear(duration: 0.2))
+                        {
+                            isClicked = true
+                        }
+                    }, label: {
+                        Image("profile-picture")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .cornerRadius(50)
+                        
+                    }).padding()
+
+                }
+                
                 HStack{
+                    if(isEditing)
+                    {
+                        Spacer()
+                    }
+                    
                     TextField("Search Twitter", text: $searchField)
-                        .frame(width: UIScreen.main.bounds.width-220, height: 30)
+                        .frame(width: isEditing ? UIScreen.main.bounds.width-190 : UIScreen.main.bounds.width-220 , height: 30)
                         .padding(7)
                         .fontWeight(.medium)
                         .padding(.horizontal, 35)
                         .background(Color(.systemGray5))
                         .cornerRadius(20)
-                        .padding(.horizontal, 10)
-                        .offset(x: -20)
                         .focused($nameIsFocused)
                         .overlay(alignment: .leading, content: {
                             Image(systemName: "magnifyingglass")
+                                .resizable()
+                                .frame(width: 13,height: 13)
+                                .padding(.horizontal,20)
+                                .foregroundColor(.gray)
                         })
                         .onTapGesture {
                             withAnimation(.linear(duration: 0.2))
@@ -56,28 +67,41 @@ struct TwitterSearchBar: View {
                                 
                             }
                         }
-                    if(isEditing)
-                    {
-                        Button(action: {
-                            withAnimation(.linear(duration: 0.2))
+                        .overlay(alignment: .trailing, content: {
+                            if(isEditing)
                             {
-                                searchField = ""
-                                isEditing = false
-                                nameIsFocused = false
+                                Image(systemName: "x.circle.fill")
+                                    .padding(.horizontal,10)
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        withAnimation(.linear(duration: 0.2))
+                                        {
+                                            searchField = ""
+                                            
+                                        }
+                                    }
                             }
                             
-                        }, label: {
-                            Image(systemName: "x.circle.fill")
-                                .foregroundColor(.gray)
-                            
                         })
-                        Spacer()
+                        if(isEditing)
+                    {
+                            Button(action: {
+                                withAnimation(.linear(duration: 0.2))
+                                {
+                                    searchField = ""
+                                    isEditing = false
+                                    nameIsFocused = false
+                                    
+                                }
+                            }, label: {
+                                Text("Cancel")
+                                    .foregroundColor(.primary)
+                            })
                     }
                     
+                    Spacer()
                 }
-                
-                
-                Spacer()
+            
             }.zIndex(2)
         }
     }
@@ -85,6 +109,6 @@ struct TwitterSearchBar: View {
 
 struct TwitterSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterSearchBar(searchField: .constant(""), isEditing: .constant(false), isClicked: .constant(false))
+        TwitterSearchBar(searchField: .constant(""), isEditing: .constant(true), isClicked: .constant(false))
     }
 }

@@ -10,21 +10,48 @@ import SwiftUI
 struct TwitterHomeView: View {
     @State private var isClicked = false
     @Binding var isProfilePictureClicked : Bool
+    @State private var isRefreshing = false // Refreshing
+    @State private var spacerLength = CGFloat(100)//For Spacer When Refreshing
     let tweetData : TweetModel
     var body: some View {
         ZStack(alignment:.top){
             TwitterTopBar(isClicked: $isProfilePictureClicked)
                 .zIndex(2)
-            
-            ScrollView{
-                Spacer(minLength: 100)
-                ForEach(1...10, id: \.self){ _ in
-                    VStack{
-                        SingleTweetView(tweetData: tweetData)
-                        Divider()
+            VStack{
+                ScrollView{
+                    Spacer(minLength: spacerLength)
+                    ForEach(1...10, id: \.self){ _ in
+                        VStack{
+                            SingleTweetView(tweetData: tweetData)
+                            Divider()
+                        }
                     }
                 }
+            }.refreshable {
+                isRefreshing = true
+                spacerLength = CGFloat(150)
+                //Replace below code with Refresing Code
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.isRefreshing = false
+                    withAnimation(.linear(duration: 0.2))
+                    {
+                        spacerLength = CGFloat(100)
+                    }
+                    
+                }
             }
+            .overlay(
+                // Show the refresh icon when the scroll view is being refreshed
+                VStack {
+                    if isRefreshing {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .padding(.top, 100)
+                    }
+                    Spacer()
+                }
+            )
+            
             
             VStack{
                 Spacer()
@@ -63,14 +90,12 @@ struct TwitterHomeView: View {
             NewTweetSheet(isClosed: $isClicked)
         })
         
-        
-        
     }
 }
 
 struct TwitterHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterHomeView(isProfilePictureClicked: .constant(false), tweetData: dummyData)
+        TwitterHomeView(isProfilePictureClicked: .constant(false), tweetData: dummyTweet)
     }
 }
 
@@ -131,7 +156,7 @@ struct SingleTweetView: View {
                 })
             }.padding(.vertical,5)
                 .tint(.gray)
-           
+            
         }
     }
 }

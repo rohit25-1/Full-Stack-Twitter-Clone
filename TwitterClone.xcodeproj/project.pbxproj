@@ -11,6 +11,8 @@
 		F915E7BB29DAD20200568831 /* SwiftSideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F915E7BA29DAD20200568831 /* SwiftSideViewModel.swift */; };
 		F918F87529D76D6800C73580 /* TwitterTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F918F87429D76D6800C73580 /* TwitterTopBar.swift */; };
 		F918F87829D7713900C73580 /* TweetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F918F87729D7713900C73580 /* TweetModel.swift */; };
+		F986C44F29F07B94009C4CE5 /* TwitterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986C44E29F07B94009C4CE5 /* TwitterProfileView.swift */; };
+		F986C45129F08CA9009C4CE5 /* HashtagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986C45029F08CA9009C4CE5 /* HashtagModel.swift */; };
 		F997D4DE29D3678B00A6F141 /* TwitterCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4DD29D3678B00A6F141 /* TwitterCloneApp.swift */; };
 		F997D4E029D3678B00A6F141 /* TwitterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4DF29D3678B00A6F141 /* TwitterTabView.swift */; };
 		F997D4E229D3678D00A6F141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F997D4E129D3678D00A6F141 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 		F915E7BA29DAD20200568831 /* SwiftSideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSideViewModel.swift; sourceTree = "<group>"; };
 		F918F87429D76D6800C73580 /* TwitterTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTopBar.swift; sourceTree = "<group>"; };
 		F918F87729D7713900C73580 /* TweetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetModel.swift; sourceTree = "<group>"; };
+		F986C44E29F07B94009C4CE5 /* TwitterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterProfileView.swift; sourceTree = "<group>"; };
+		F986C45029F08CA9009C4CE5 /* HashtagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagModel.swift; sourceTree = "<group>"; };
 		F997D4DA29D3678B00A6F141 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F997D4DD29D3678B00A6F141 /* TwitterCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCloneApp.swift; sourceTree = "<group>"; };
 		F997D4DF29D3678B00A6F141 /* TwitterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTabView.swift; sourceTree = "<group>"; };
@@ -61,6 +65,7 @@
 			children = (
 				F918F87729D7713900C73580 /* TweetModel.swift */,
 				F915E7BA29DAD20200568831 /* SwiftSideViewModel.swift */,
+				F986C45029F08CA9009C4CE5 /* HashtagModel.swift */,
 			);
 			path = TwitterModels;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 				F997D4EF29D36E9300A6F141 /* TwitterNotificationView.swift */,
 				F997D4F129D36EA000A6F141 /* TwitterMessageView.swift */,
 				F915E7B629DAD05E00568831 /* TwitterSideView.swift */,
+				F986C44E29F07B94009C4CE5 /* TwitterProfileView.swift */,
 			);
 			path = TwitterViews;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 				F918F87529D76D6800C73580 /* TwitterTopBar.swift in Sources */,
 				F997D4E029D3678B00A6F141 /* TwitterTabView.swift in Sources */,
 				F997D4DE29D3678B00A6F141 /* TwitterCloneApp.swift in Sources */,
+				F986C44F29F07B94009C4CE5 /* TwitterProfileView.swift in Sources */,
 				F997D4F029D36E9300A6F141 /* TwitterNotificationView.swift in Sources */,
 				F997D4F229D36EA000A6F141 /* TwitterMessageView.swift in Sources */,
 				F9C4AC8529DA0AE9000C4C62 /* TwitterNotificationBar.swift in Sources */,
@@ -222,6 +229,7 @@
 				F9C4AC8729DA0DEF000C4C62 /* TwitterMessageBar.swift in Sources */,
 				F915E7BB29DAD20200568831 /* SwiftSideViewModel.swift in Sources */,
 				F997D4EC29D36E7400A6F141 /* TwitterHomeView.swift in Sources */,
+				F986C45129F08CA9009C4CE5 /* HashtagModel.swift in Sources */,
 				F9A6231629D84DAE0052781C /* TwitterSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

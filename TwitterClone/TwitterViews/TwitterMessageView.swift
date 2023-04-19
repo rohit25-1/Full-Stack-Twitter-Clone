@@ -15,25 +15,25 @@ struct TwitterMessageView: View {
                 .zIndex(2)
             ScrollView{
                 Spacer(minLength: 100)
-                HStack(alignment: .center){
-                    Image(systemName: "envelope.badge")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .padding(.horizontal,15)
-                    
-                    VStack(alignment: .leading){
-                        HStack{
-                            Text("Message Requests")
-                                .fontWeight(.bold)
-                                .font(.body)
-                        }
-                        Text("10+ pending requests")
-                            .font(.body)
-                            .foregroundColor(.gray)
-                    }
-                }.frame(width: UIScreen.main.bounds.width-30, alignment: .leading)
-                    .padding(.vertical)
+//                HStack(alignment: .center){
+//                    Image(systemName: "envelope.badge")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 40, height: 40)
+//                        .padding(.horizontal,15)
+//
+//                    VStack(alignment: .leading){
+//                        HStack{
+//                            Text("Message Requests")
+//                                .fontWeight(.bold)
+//                                .font(.body)
+//                        }
+//                        Text("10+ pending requests")
+//                            .font(.body)
+//                            .foregroundColor(.gray)
+//                    }
+//                }.frame(width: UIScreen.main.bounds.width-30, alignment: .leading)
+//                    .padding(.vertical)
                 Divider()
                 ForEach(1..<10, content: {_ in
                     HStack(alignment: .top){
