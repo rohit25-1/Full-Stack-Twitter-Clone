@@ -54,16 +54,15 @@ struct TwitterSideView: View {
                         })
                     }
                     Spacer()
-                    Button(action: {
-                        
-                    }, label: {
+                    NavigationLink(destination: LandingView()) {
                         Text("Logout")
                             .frame(width: 140, height: 40)
                             .background(Color(.systemBlue))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                             .padding()
-                    })
+                            .bold()
+                    }
                     
                 }.frame(width: UIScreen.main.bounds.width-150, alignment: .leading)
                     .padding()
