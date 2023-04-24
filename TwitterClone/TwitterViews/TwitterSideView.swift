@@ -10,6 +10,7 @@ import SwiftUI
 struct TwitterSideView: View {
     @Environment(\.colorScheme) var colorScheme
     @Binding var isOpen : Bool
+    @Binding var authStatus : Bool
     var body: some View {
 
             HStack{
@@ -54,7 +55,13 @@ struct TwitterSideView: View {
                         })
                     }
                     Spacer()
-                    NavigationLink(destination: LandingView()) {
+                    Button {
+                        withAnimation(.easeIn(duration: 0.5))
+                        {
+                            authStatus = false
+                        }
+                        
+                    } label: {
                         Text("Logout")
                             .frame(width: 140, height: 40)
                             .background(Color(.systemBlue))
@@ -63,6 +70,7 @@ struct TwitterSideView: View {
                             .padding()
                             .bold()
                     }
+
                     
                 }.frame(width: UIScreen.main.bounds.width-150, alignment: .leading)
                     .padding()
@@ -80,6 +88,6 @@ struct TwitterSideView: View {
 
 struct TwitterSideView_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterSideView(isOpen: .constant(true))
+        TwitterSideView(isOpen: .constant(true), authStatus: .constant(false))
     }
 }

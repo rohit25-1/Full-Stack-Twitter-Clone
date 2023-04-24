@@ -71,7 +71,7 @@ struct CustomJoiningButtons: View {
     let image: String
     let description: String
     var body: some View {
-        HStack{
+        HStack(spacing: 15){
             Image(image)
                 .resizable()
                 .scaledToFill()

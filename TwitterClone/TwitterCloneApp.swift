@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct TwitterCloneApp: App {
+    @StateObject var authStatus = Authenticate()
     var body: some Scene {
         WindowGroup {
-            TwitterTabView()
+            if(authStatus.isAuthenticated)
+            {
+                TwitterTabView().environmentObject(authStatus)
+            }
+            else{
+                LandingView().environmentObject(authStatus)
+            }
         }
     }
 }

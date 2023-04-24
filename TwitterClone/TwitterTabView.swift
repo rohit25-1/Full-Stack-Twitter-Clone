@@ -10,6 +10,7 @@ import SwiftUI
 struct TwitterTabView: View {
     @State private var selectedTab = 0
     @State var isOpen = false
+    @EnvironmentObject var authStatus: Authenticate
     var body: some View {
         NavigationStack{
             TabView(selection: $selectedTab, content: {
@@ -36,7 +37,7 @@ struct TwitterTabView: View {
                     .tag(3)
             })
             .overlay(content: {
-                TwitterSideView(isOpen: $isOpen)
+                TwitterSideView(isOpen: $isOpen, authStatus: $authStatus.isAuthenticated)
                 
                 
             })

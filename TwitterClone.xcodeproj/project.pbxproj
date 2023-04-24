@@ -23,6 +23,7 @@
 		F997D4F229D36EA000A6F141 /* TwitterMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4F129D36EA000A6F141 /* TwitterMessageView.swift */; };
 		F997D4F629D378E100A6F141 /* NewTweetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4F529D378E100A6F141 /* NewTweetSheet.swift */; };
 		F9A6231629D84DAE0052781C /* TwitterSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */; };
+		F9C3FD1A29F68D230018D222 /* Authenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3FD1929F68D230018D222 /* Authenticate.swift */; };
 		F9C4AC8529DA0AE9000C4C62 /* TwitterNotificationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C4AC8429DA0AE9000C4C62 /* TwitterNotificationBar.swift */; };
 		F9C4AC8729DA0DEF000C4C62 /* TwitterMessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C4AC8629DA0DEF000C4C62 /* TwitterMessageBar.swift */; };
 		F9ED939529F1B22700585BBD /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED939429F1B22700585BBD /* LandingView.swift */; };
@@ -49,6 +50,8 @@
 		F997D4F129D36EA000A6F141 /* TwitterMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMessageView.swift; sourceTree = "<group>"; };
 		F997D4F529D378E100A6F141 /* NewTweetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetSheet.swift; sourceTree = "<group>"; };
 		F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSearchBar.swift; sourceTree = "<group>"; };
+		F9C3FD1929F68D230018D222 /* Authenticate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticate.swift; sourceTree = "<group>"; };
+		F9C3FD1B29F697DF0018D222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F9C4AC8429DA0AE9000C4C62 /* TwitterNotificationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterNotificationBar.swift; sourceTree = "<group>"; };
 		F9C4AC8629DA0DEF000C4C62 /* TwitterMessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMessageBar.swift; sourceTree = "<group>"; };
 		F9ED939429F1B22700585BBD /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 		F997D4DC29D3678B00A6F141 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				F9C3FD1B29F697DF0018D222 /* Info.plist */,
+				F9C3FD1829F68D0A0018D222 /* Network */,
 				F9C4AC8329DA0A7F000C4C62 /* BarViews */,
 				F9ED939329F1B21000585BBD /* LoginViews */,
 				F918F87629D7712000C73580 /* TwitterModels */,
@@ -137,6 +142,14 @@
 				F997D4F529D378E100A6F141 /* NewTweetSheet.swift */,
 			);
 			path = TwitterSheetViews;
+			sourceTree = "<group>";
+		};
+		F9C3FD1829F68D0A0018D222 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F9C3FD1929F68D230018D222 /* Authenticate.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		F9C4AC8329DA0A7F000C4C62 /* BarViews */ = {
@@ -235,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C3FD1A29F68D230018D222 /* Authenticate.swift in Sources */,
 				F915E7B729DAD05E00568831 /* TwitterSideView.swift in Sources */,
 				F997D4EE29D36E8000A6F141 /* TwitterSearchView.swift in Sources */,
 				F918F87529D76D6800C73580 /* TwitterTopBar.swift in Sources */,
@@ -385,6 +399,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TwitterClone/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TwitterClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -413,6 +428,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TwitterClone/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TwitterClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
