@@ -13,71 +13,97 @@ struct LoginView: View {
     @EnvironmentObject var authStatus: Authenticate
     @State private var errorMessage = ""
     var body: some View {
-        
-        VStack(spacing: 50){
-        TwitterTopBarWithoutImage()
-
-            Spacer()
-                Text("Sign in to Twitter")
-                    .font(.system(size: 30, weight: .heavy))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal,30)
-            VStack(spacing:20){
-                Text(errorMessage)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(Color(.systemRed))
-                    .padding(.horizontal,35)
-                TextField("Enter email", text: $email)
-                    .font(.headline)
-                    .bold()
-                    .foregroundColor(Color.primary)
-                    .frame(width: UIScreen.main.bounds.width-90, height: 70)
-                    .padding(.horizontal)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    }
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                
-                SecureField("Password", text: $password)
-                    .font(.headline)
-                    .bold()
-                    .frame(width: UIScreen.main.bounds.width-90, height: 70)
-                    .padding(.horizontal)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 0.5)
-                    }
-            }
+        ZStack(alignment: .top){
+            TwitterTopBarWithoutImage()
+            VStack(spacing: 50){
             
-            Spacer()
-            Button {
-                let network = NetworkCalls()
-                Task{
-                    if(await !network.loginRequest(formData: LoginParameters(_id: "01", email: email, password: password)))
-                    {
-                        errorMessage = "Invalid Crededentials"
-                    }
-                    else{
-                        withAnimation(.easeIn(duration: 0.5))
-                        {
-                            authStatus.isAuthenticated = true
+
+                Spacer()
+                    Text("Sign in to Twitter")
+                        .font(.system(size: 30, weight: .heavy))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal,30)
+                VStack(spacing:20){
+                    Text(errorMessage)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(Color(.systemRed))
+                        .padding(.horizontal,35)
+                    TextField("Enter email", text: $email)
+                        .font(.headline)
+                        .bold()
+                        .foregroundColor(Color.primary)
+                        .frame(width: UIScreen.main.bounds.width-90, height: 70)
+                        .padding(.horizontal)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.gray, lineWidth: 0.5)
                         }
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                    
+                    SecureField("Password", text: $password)
+                        .font(.headline)
+                        .bold()
+                        .frame(width: UIScreen.main.bounds.width-90, height: 70)
+                        .padding(.horizontal)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.gray, lineWidth: 0.5)
+                        }
+                    NavigationLink {
+                        ForgotPasswordView()
+                    } label: {
+                        Text("Forgot password?")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal,37)
+                        .foregroundColor(Color(.systemBlue))
                     }
+
                 }
-            } label: {
-                Text("Log in")
-                    .font(.title3)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
-                    .frame(width: UIScreen.main.bounds.width-90, height: 60)
-                    .background(Color(.systemBlue))
-                    .cornerRadius(50)
+                
+                Spacer()
+                Button {
+                    let network = NetworkCalls()
+                    Task{
+                        if(email != "" && password != "")
+                        {
+                            if(await !network.loginRequest(formData: LoginParameters(_id: "01", email: email, password: password)))
+                            {
+                                errorMessage = "Invalid Credentials"
+                            }
+                            else{
+                                withAnimation(.easeIn(duration: 0.5))
+                                {
+                                    authStatus.isAuthenticated = true
+                                }
+                            }
+                        }
+                        else{
+                            errorMessage = "Enter email and password"
+                        }
+                        
+                    }
+                } label: {
+                    Text("Log in")
+                        .font(.title3)
+                        .fontWeight(.heavy)
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width-90, height: 60)
+                        .background(Color(.systemBlue))
+                        .cornerRadius(50)
+                }
+                Spacer()
+         
             }
-            Spacer()
-     
-        }
+            .gesture(DragGesture()
+                            .onChanged { value in
+                                if value.translation.height > 0 {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }
+                            }
+                        )
+        }.navigationTitle("")
+        
         
     }
 }

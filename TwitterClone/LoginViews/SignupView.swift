@@ -15,85 +15,103 @@ struct SignupView: View {
     @State var isRegistered = false
     var body: some View {
         NavigationStack{
-            VStack(spacing: 30){
-            TwitterTopBarWithoutImage()
-
-                Spacer()
-                    Text("Sign Up to Twitter")
-                        .font(.system(size: 30, weight: .heavy))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal,30)
-                VStack(spacing:20){
-                    Text(message)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(Color(.systemRed))
-                        .padding(.horizontal,35)
-                    TextField("Enter username", text: $username)
-                        .font(.headline)
-                        .bold()
-                        .foregroundColor(Color.primary)
-                        .frame(width: UIScreen.main.bounds.width-90, height: 70)
-                        .padding(.horizontal)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.gray, lineWidth: 0.5)
-                        }
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
+            ZStack(alignment: .top){
+                TwitterTopBarWithoutImage()
+                VStack(spacing: 30){
+                
                     
-                    TextField("Enter email", text: $email)
-                        .font(.headline)
-                        .bold()
-                        .foregroundColor(Color.primary)
-                        .frame(width: UIScreen.main.bounds.width-90, height: 70)
-                        .padding(.horizontal)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.gray, lineWidth: 0.5)
-                        }
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                    
-                    
-                    SecureField("Password", text: $password)
-                        .font(.headline)
-                        .bold()
-                        .frame(width: UIScreen.main.bounds.width-90, height: 70)
-                        .padding(.horizontal)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.gray, lineWidth: 0.5)
-                        }
-                }
-                Spacer()
-                Button {
-                    let network = NetworkCalls()
-                    Task {
-                        if(await !network.registerRequest(formData: LoginParameters(_id: "01", email: email, password: password, username: username)))
-                        {
-                            message = "Error Registering User"
-                        }
-                        else{
-                           isRegistered = true
-                        }
+                        
+                    Spacer()
+                        Text("Sign Up to Twitter")
+                            .font(.system(size: 30, weight: .heavy))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal,30)
+                    VStack(spacing:20){
+                        Text(message)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color(.systemRed))
+                            .padding(.horizontal,35)
+                        TextField("Enter username", text: $username)
+                            .font(.headline)
+                            .bold()
+                            .foregroundColor(Color.primary)
+                            .frame(width: UIScreen.main.bounds.width-90, height: 70)
+                            .padding(.horizontal)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 0.5)
+                            }
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                        
+                        TextField("Enter email", text: $email)
+                            .font(.headline)
+                            .bold()
+                            .foregroundColor(Color.primary)
+                            .frame(width: UIScreen.main.bounds.width-90, height: 70)
+                            .padding(.horizontal)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 0.5)
+                            }
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                        
+                        
+                        SecureField("Password", text: $password)
+                            .font(.headline)
+                            .bold()
+                            .frame(width: UIScreen.main.bounds.width-90, height: 70)
+                            .padding(.horizontal)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 0.5)
+                            }
                     }
+                    Spacer()
+                    Button {
+                        let network = NetworkCalls()
+                        Task {
+                            if(email != "" && password != "")
+                            {
+                                if(await !network.registerRequest(formData: LoginParameters(_id: "01", email: email, password: password, username: username)))
+                                {
+                                    message = "Error Registering User"
+                                }
+                                else{
+                                    isRegistered = true
+                                }
+                            }
+                            else{
+                                message = "Enter All Values"
+                            }
+                        }
 
-                } label: {
-                    Text("Sign up")
-                        .font(.title3)
-                        .fontWeight(.heavy)
-                        .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width-90, height: 60)
-                        .background(Color(.systemBlue))
-                        .cornerRadius(50)
+                    } label: {
+                        Text("Sign up")
+                            .font(.title3)
+                            .fontWeight(.heavy)
+                            .foregroundColor(.white)
+                            .frame(width: UIScreen.main.bounds.width-90, height: 60)
+                            .background(Color(.systemBlue))
+                            .cornerRadius(50)
+                    }
+                    Spacer()
+             
                 }
-                Spacer()
-         
+            }.navigationDestination(isPresented: $isRegistered) {
+                LoginView()
             }
-        }.navigationDestination(isPresented: $isRegistered) {
-            LoginView()
-        }
-        .navigationTitle("")
+            .navigationTitle("")
+            .gesture(DragGesture()
+                            .onChanged { value in
+                                if value.translation.height > 0 {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }
+                            }
+                        )
+            }
+            
         
         
     }

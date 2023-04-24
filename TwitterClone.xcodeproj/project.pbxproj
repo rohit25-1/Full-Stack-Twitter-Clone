@@ -11,6 +11,7 @@
 		F915E7BB29DAD20200568831 /* SwiftSideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F915E7BA29DAD20200568831 /* SwiftSideViewModel.swift */; };
 		F918F87529D76D6800C73580 /* TwitterTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F918F87429D76D6800C73580 /* TwitterTopBar.swift */; };
 		F918F87829D7713900C73580 /* TweetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F918F87729D7713900C73580 /* TweetModel.swift */; };
+		F967921029F6F09C00105431 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967920F29F6F09C00105431 /* ForgotPasswordView.swift */; };
 		F986C44F29F07B94009C4CE5 /* TwitterProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986C44E29F07B94009C4CE5 /* TwitterProfileView.swift */; };
 		F986C45129F08CA9009C4CE5 /* HashtagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986C45029F08CA9009C4CE5 /* HashtagModel.swift */; };
 		F997D4DE29D3678B00A6F141 /* TwitterCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4DD29D3678B00A6F141 /* TwitterCloneApp.swift */; };
@@ -37,6 +38,7 @@
 		F915E7BA29DAD20200568831 /* SwiftSideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSideViewModel.swift; sourceTree = "<group>"; };
 		F918F87429D76D6800C73580 /* TwitterTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTopBar.swift; sourceTree = "<group>"; };
 		F918F87729D7713900C73580 /* TweetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetModel.swift; sourceTree = "<group>"; };
+		F967920F29F6F09C00105431 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		F986C44E29F07B94009C4CE5 /* TwitterProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterProfileView.swift; sourceTree = "<group>"; };
 		F986C45029F08CA9009C4CE5 /* HashtagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagModel.swift; sourceTree = "<group>"; };
 		F997D4DA29D3678B00A6F141 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				F9ED939429F1B22700585BBD /* LandingView.swift */,
 				F9ED939829F1C37500585BBD /* LoginView.swift */,
 				F9ED939A29F1C38100585BBD /* SignupView.swift */,
+				F967920F29F6F09C00105431 /* ForgotPasswordView.swift */,
 			);
 			path = LoginViews;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				F997D4F029D36E9300A6F141 /* TwitterNotificationView.swift in Sources */,
 				F997D4F229D36EA000A6F141 /* TwitterMessageView.swift in Sources */,
 				F9C4AC8529DA0AE9000C4C62 /* TwitterNotificationBar.swift in Sources */,
+				F967921029F6F09C00105431 /* ForgotPasswordView.swift in Sources */,
 				F918F87829D7713900C73580 /* TweetModel.swift in Sources */,
 				F997D4F629D378E100A6F141 /* NewTweetSheet.swift in Sources */,
 				F9C4AC8729DA0DEF000C4C62 /* TwitterMessageBar.swift in Sources */,
@@ -397,6 +401,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TwitterClone/Preview Content\"";
+				DEVELOPMENT_TEAM = XR73T234QY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TwitterClone/Info.plist;
@@ -426,6 +431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TwitterClone/Preview Content\"";
+				DEVELOPMENT_TEAM = XR73T234QY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TwitterClone/Info.plist;

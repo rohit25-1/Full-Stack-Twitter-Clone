@@ -58,7 +58,13 @@ struct TwitterSideView: View {
                     Button {
                         withAnimation(.easeIn(duration: 0.5))
                         {
+                            let defaults = UserDefaults.standard
+                            defaults.removeObject(forKey: "jwt")
                             authStatus = false
+                        }
+                        let network = NetworkCalls()
+                        Task{
+                            await network.isLoggedIn()
                         }
                         
                     } label: {

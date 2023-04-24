@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct TwitterCloneApp: App {
     @StateObject var authStatus = Authenticate()
+    @State var isLoading = true
     var body: some Scene {
         WindowGroup {
             if(authStatus.isAuthenticated)
@@ -17,7 +18,29 @@ struct TwitterCloneApp: App {
                 TwitterTabView().environmentObject(authStatus)
             }
             else{
-                LandingView().environmentObject(authStatus)
+                if(isLoading)
+                {
+                    ProgressView()
+                        .onAppear {
+                            let network = NetworkCalls()
+                            Task{
+                                 if(await !network.isLoggedIn())
+                                {
+                                    isLoading = false
+                                }
+                                else{
+                                    authStatus.isAuthenticated = true
+                                }
+
+                            }
+                        }
+                    
+                }
+                else{
+                    LandingView().environmentObject(authStatus)
+                }
+                
+
             }
         }
     }
