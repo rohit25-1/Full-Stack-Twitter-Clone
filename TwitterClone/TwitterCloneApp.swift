@@ -10,12 +10,18 @@ import SwiftUI
 @main
 struct TwitterCloneApp: App {
     @StateObject var authStatus = Authenticate()
+    @ObservedObject var tweets = TweetData()
     @State var isLoading = true
     var body: some Scene {
         WindowGroup {
             if(authStatus.isAuthenticated)
             {
-                TwitterTabView().environmentObject(authStatus)
+                TwitterTabView()
+                    .environmentObject(authStatus)
+                    .onAppear {
+                        tweets.refreshTweets()
+                    }
+                
             }
             else{
                 if(isLoading)
@@ -30,6 +36,7 @@ struct TwitterCloneApp: App {
                                 }
                                 else{
                                     authStatus.isAuthenticated = true
+                                    tweets.refreshTweets()
                                 }
 
                             }

@@ -9,18 +9,20 @@ import SwiftUI
 
 struct TwitterNotificationView: View {
     @Binding var isProfilePictureClicked : Bool
+    @EnvironmentObject var tweets : TweetData
     var body: some View {
         ZStack(alignment: .top){
             TwitterNotificationBar(isClicked: $isProfilePictureClicked)
                 .zIndex(2)
+                .environmentObject(tweets)
             ScrollView{
                 Spacer(minLength: 100)
                 ForEach(1..<5, content: {_ in
                     VStack(alignment: .leading, spacing: 20){
-                        Image("profile-picture")
+                        Image("default-image")
                             .resizable()
                             .frame(width: 70, height: 70)
-                            .cornerRadius(50)
+                            .clipShape(Circle())
                         Text("Rohit Sridharan")
                             .font(.title3)
                             .bold()

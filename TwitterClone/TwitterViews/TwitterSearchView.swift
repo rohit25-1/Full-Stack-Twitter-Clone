@@ -12,22 +12,23 @@ struct TwitterSearchView: View {
     @State var searchField = ""
     @FocusState private var isFocused : Bool
     @Binding var isProfilePictureClicked : Bool
-    let hashtags : HashtagModel
+    @EnvironmentObject var tweets : TweetData
     var body: some View {
         ZStack(alignment: .top){
             TwitterSearchBar(searchField: $searchField, isEditing: $isEditing, isClicked: $isProfilePictureClicked)
                 .autocorrectionDisabled()
                 .zIndex(2)
+                .environmentObject(tweets)
             if(!isEditing)
             {
                 ScrollView{
                     Spacer(minLength: 90)
                     ForEach(1..<20, content: {_ in
                         VStack(alignment:.leading){
-                            Text("#"+hashtags.hashtag)
+                            Text("#Dhoni")
                                 .font(.body)
                                 .bold()
-                            Text(hashtags.count+" Tweets")
+                            Text("7k Tweets")
                                 .foregroundColor(.gray)
                             Divider()
                         }.frame(width: UIScreen.main.bounds.width-30, alignment: .leading)
@@ -43,7 +44,7 @@ struct TwitterSearchView: View {
                             Image("profile-picture")
                                 .resizable()
                                 .frame(width: 50, height: 50)
-                                .cornerRadius(50)
+                                .clipShape(Circle())
                             VStack(alignment: .leading){
                                 Text("Rohit Sridharan")
                                     .font(.title3)
@@ -76,6 +77,6 @@ struct TwitterSearchView: View {
 
 struct TwitterSearchVieew_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterSearchView(isProfilePictureClicked: .constant(false), hashtags: dummyHashtag)
+        TwitterSearchView(isProfilePictureClicked: .constant(false))
     }
 }

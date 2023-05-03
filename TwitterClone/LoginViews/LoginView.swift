@@ -67,7 +67,7 @@ struct LoginView: View {
                     Task{
                         if(email != "" && password != "")
                         {
-                            if(await !network.loginRequest(formData: LoginParameters(_id: "01", email: email, password: password)))
+                            if(await !network.loginRequest(formData: LoginParameters(_id: "01", email: email, name: "", password: password)))
                             {
                                 errorMessage = "Invalid Credentials"
                             }

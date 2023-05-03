@@ -71,7 +71,7 @@ struct ForgotPasswordView: View {
                         Task {
                             if(email != "" && password != "" && confirmPassword != "" && confirmPassword == password)
                             {
-                                if(await !network.resetRequest(formData: LoginParameters(_id: "01", email: email, password: password)))
+                                if(await !network.resetRequest(formData: LoginParameters(_id: "01", email: email, name: "", password: password)))
                                 {
                                     errorMessage = "Error Resetting"
                                 }

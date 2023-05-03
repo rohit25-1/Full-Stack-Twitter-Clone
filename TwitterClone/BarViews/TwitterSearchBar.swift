@@ -12,6 +12,7 @@ struct TwitterSearchBar: View {
     @Binding var isEditing : Bool
     @Binding var isClicked : Bool
     @FocusState private var nameIsFocused : Bool
+    @EnvironmentObject var tweets : TweetData
     var body: some View {
         ZStack{
             Rectangle()
@@ -29,11 +30,17 @@ struct TwitterSearchBar: View {
                             isClicked = true
                         }
                     }, label: {
-                        Image("profile-picture")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .cornerRadius(50)
-                        
+                        AsyncImage(url: URL(string: tweets.userData.profilepicture)) { Image in
+                            Image
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                        } placeholder: {
+                            Image("default-image")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                        }
                     }).padding()
 
                 }

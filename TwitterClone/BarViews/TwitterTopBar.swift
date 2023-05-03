@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TwitterTopBar: View {
     @Binding var isClicked : Bool
+    @ObservedObject var userData = Authenticate()
+    @EnvironmentObject var tweets : TweetData
     var body: some View {
         ZStack{
             Rectangle()
@@ -19,16 +21,27 @@ struct TwitterTopBar: View {
             
             HStack{
                 Button(action: {
-                    withAnimation(.linear(duration: 0.2))
+                    withAnimation(.linear(duration: 0.15))
                     {
                         isClicked = true
                     }
                     
                 }, label: {
-                    Image("profile-picture")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(50)
+                    //                    Image("profile-picture")
+                    //                        .resizable()
+                    //                        .frame(width: 40, height: 40)
+                    //                        .cornerRadius(50)
+                    AsyncImage(url: URL(string: tweets.userData.profilepicture)) { Image in
+                        Image
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        Image("default-image")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    }
                 }).padding()
                 Spacer()
                 Image("twitter-logo")

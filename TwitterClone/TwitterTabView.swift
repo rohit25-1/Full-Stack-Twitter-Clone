@@ -10,17 +10,19 @@ import SwiftUI
 struct TwitterTabView: View {
     @State private var selectedTab = 0
     @State var isOpen = false
+    @State var isOpen2 = false
     @EnvironmentObject var authStatus: Authenticate
+    @State var tweets = TweetData()
     var body: some View {
         NavigationStack{
             TabView(selection: $selectedTab, content: {
-                TwitterHomeView(isProfilePictureClicked: $isOpen, tweetData: dummyTweet)
+                TwitterHomeView(isProfilePictureClicked: $isOpen)
                     .tabItem({
                         Image(systemName: "house")
                     })
                     .tag(0)
                 
-                TwitterSearchView(isProfilePictureClicked: $isOpen, hashtags: dummyHashtag)
+                TwitterSearchView(isProfilePictureClicked: $isOpen)
                     .tabItem({
                         Image(systemName: "magnifyingglass")
                     })
@@ -36,14 +38,12 @@ struct TwitterTabView: View {
                     })
                     .tag(3)
             })
-            .overlay(content: {
-                TwitterSideView(isOpen: $isOpen, authStatus: $authStatus.isAuthenticated)
-                
-                
-            })
-        }
-        
-        
+            .slideInView(isActive: $isOpen,edge: .leading) {
+                TwitterSideView(authStatus: $authStatus.isAuthenticated)
+            }
+            
+        }.environmentObject(tweets)
+            
         
     }
 }

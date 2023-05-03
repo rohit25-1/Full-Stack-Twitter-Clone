@@ -9,38 +9,22 @@ import SwiftUI
 
 struct TwitterMessageView: View {
     @Binding var isProfilePictureClicked : Bool
+    @EnvironmentObject var tweets : TweetData
     var body: some View {
         ZStack(alignment: .top){
             TwitterMessageBar(isClicked: $isProfilePictureClicked)
                 .zIndex(2)
+                .environmentObject(tweets)
             ScrollView{
                 Spacer(minLength: 100)
-//                HStack(alignment: .center){
-//                    Image(systemName: "envelope.badge")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 40, height: 40)
-//                        .padding(.horizontal,15)
-//
-//                    VStack(alignment: .leading){
-//                        HStack{
-//                            Text("Message Requests")
-//                                .fontWeight(.bold)
-//                                .font(.body)
-//                        }
-//                        Text("10+ pending requests")
-//                            .font(.body)
-//                            .foregroundColor(.gray)
-//                    }
-//                }.frame(width: UIScreen.main.bounds.width-30, alignment: .leading)
-//                    .padding(.vertical)
+
                 Divider()
                 ForEach(1..<10, content: {_ in
                     HStack(alignment: .top){
                         Image("profile-picture")
                             .resizable()
                             .frame(width: 50, height: 50)
-                            .cornerRadius(50)
+                            .clipShape(Circle())
                         VStack(alignment: .leading){
                             HStack{
                                 Text("Rohit Sridharan")

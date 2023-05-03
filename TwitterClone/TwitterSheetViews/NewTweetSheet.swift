@@ -11,6 +11,8 @@ struct NewTweetSheet: View {
     @State private var tweetContent = ""
     @FocusState var showKeyboard : Bool
     @Binding var isClosed : Bool
+    @EnvironmentObject var tweets : TweetData
+    
     var body: some View {
         VStack{
             HStack{
@@ -21,8 +23,20 @@ struct NewTweetSheet: View {
                 })
                 Spacer()
                 Button(action: {
-                    //invoke new tweet action
-                    //yet to do
+                    let network = NetworkCalls()
+                    Task{
+                        if(await !network.tweetRequest(tweetdata: TweetRequest(tweet: tweetContent)))
+                        {
+                            print("Error Tweeting")
+                        }
+                        else{
+                            Task{
+                                    tweets.refreshTweets()
+                                    isClosed = false
+                            }
+                            
+                        }
+                    }
                 }, label: {
                     Text("Tweet")
                         .bold()
@@ -33,10 +47,18 @@ struct NewTweetSheet: View {
                 })
             }.padding()
             HStack(alignment:.top){
-                Image("profile-picture")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(50)
+                
+                AsyncImage(url: URL(string: tweets.userData.profilepicture)) { Image in
+                    Image
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                } placeholder: {
+                    Image("profile-picture")
+                        .resizable()
+                        .frame(width: 45, height: 45)
+                        .clipShape(Circle())
+                }
                 ZStack(alignment:.topLeading){
                     TextEditor(text: $tweetContent)
                         .autocorrectionDisabled()

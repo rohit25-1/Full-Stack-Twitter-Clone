@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignupView: View {
     @State var username: String = ""
+    @State var name: String = ""
     @State var email: String = ""
     @State var password: String = ""
     @State var message = ""
@@ -32,6 +33,18 @@ struct SignupView: View {
                             .foregroundColor(Color(.systemRed))
                             .padding(.horizontal,35)
                         TextField("Enter username", text: $username)
+                            .font(.headline)
+                            .bold()
+                            .foregroundColor(Color.primary)
+                            .frame(width: UIScreen.main.bounds.width-90, height: 70)
+                            .padding(.horizontal)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 0.5)
+                            }
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                        TextField("Enter name", text: $name)
                             .font(.headline)
                             .bold()
                             .foregroundColor(Color.primary)
@@ -74,7 +87,7 @@ struct SignupView: View {
                         Task {
                             if(email != "" && password != "")
                             {
-                                if(await !network.registerRequest(formData: LoginParameters(_id: "01", email: email, password: password, username: username)))
+                                if(await !network.registerRequest(formData: LoginParameters(_id: "01", email: email, name: name, password: password, username: username)))
                                 {
                                     message = "Error Registering User"
                                 }
