@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TwitterSideView: View {
     @Environment(\.colorScheme) var colorScheme
-//    @Binding var isOpen : Bool
-    @Binding var authStatus : Bool
+    @EnvironmentObject var authStatus: Authenticate
     @EnvironmentObject var tweets : TweetData
     //    @ObservedObject var tweets = TweetData()
     var body: some View {
@@ -69,7 +68,7 @@ struct TwitterSideView: View {
                     {
                         let defaults = UserDefaults.standard
                         defaults.removeObject(forKey: "jwt")
-                        authStatus = false
+                        authStatus.isAuthenticated = false
                     }
                     let network = NetworkCalls()
                     Task{
@@ -90,20 +89,6 @@ struct TwitterSideView: View {
             }.shadow(radius: 0.2)
                 .padding()
                 .background(.regularMaterial)
-            //                .offset(x: isOpen ? 0 : -UIScreen.main.bounds.width)
-            
-            //                .frame(width: UIScreen.main.bounds.width-150, alignment: .leading)
-            //            Rectangle()
-            //                .offset(x: isOpen ? 0 : -UIScreen.main.bounds.width)
-            //                .onTapGesture {
-            //                    withAnimation(.easeIn(duration: 0.2))
-            //                    {
-            //                        isOpen = false
-            //                    }
-            //                    print("Hello")
-            //                }
-            
-            //            Spacer()
             
         }
         
@@ -114,6 +99,6 @@ struct TwitterSideView: View {
 
 struct TwitterSideView_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterSideView(authStatus: .constant(false))
+        TwitterSideView()
     }
 }

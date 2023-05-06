@@ -25,17 +25,23 @@ struct NewTweetSheet: View {
                 Button(action: {
                     let network = NetworkCalls()
                     Task{
-                        if(await !network.tweetRequest(tweetdata: TweetRequest(tweet: tweetContent)))
-                        {
-                            print("Error Tweeting")
-                        }
-                        else{
-                            Task{
-                                    tweets.refreshTweets()
-                                    isClosed = false
-                            }
+                        
+                        let status = await network.tweetRequest(tweetdata: TweetRequest(tweet: tweetContent))
+                        
+                        switch status{
+                        case .fail:
+//                            message = "Error Tweeting"
+                            print(" ")
+                        case .success:
+                            tweets.refreshTweets()
+                            isClosed = false
                             
+                        case .networkError:
+//                            message = "Network Error"
+                            print(" ")
                         }
+                        
+                        
                     }
                 }, label: {
                     Text("Tweet")

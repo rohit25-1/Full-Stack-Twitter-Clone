@@ -211,4 +211,8 @@ app.get("/userdata", async (req, res) => {
   }
 });
 
+app.get("/status", async (req, res) => {
+  res.status(200);
+});
+
 app.listen(3000);

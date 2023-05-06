@@ -71,12 +71,15 @@ struct ForgotPasswordView: View {
                         Task {
                             if(email != "" && password != "" && confirmPassword != "" && confirmPassword == password)
                             {
-                                if(await !network.resetRequest(formData: LoginParameters(_id: "01", email: email, name: "", password: password)))
-                                {
+                                let status = await network.resetRequest(formData: LoginParameters(_id: "01", email: email, name: "", password: password))
+                                
+                                switch status{
+                                case .fail:
                                     errorMessage = "Error Resetting"
-                                }
-                                else{
+                                case .success:
                                     isRegistered = true
+                                case .networkError:
+                                    errorMessage = "Network Error"
                                 }
                             }
                             else{
@@ -95,18 +98,19 @@ struct ForgotPasswordView: View {
                     Spacer()
                     
                 }
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        if value.translation.height > 0 {
-                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        }
-                    }
-                )
+                
             }
         }.navigationTitle("")
             .navigationDestination(isPresented: $isRegistered) {
                 LoginView()
             }
+            .gesture(DragGesture()
+                .onChanged { value in
+                    if value.translation.height > 0 {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                }
+            )
         
         
         

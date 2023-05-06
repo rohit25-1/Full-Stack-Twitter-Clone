@@ -67,15 +67,18 @@ struct LoginView: View {
                     Task{
                         if(email != "" && password != "")
                         {
-                            if(await !network.loginRequest(formData: LoginParameters(_id: "01", email: email, name: "", password: password)))
-                            {
+                            let status = await network.loginRequest(formData: LoginParameters(_id: "01", email: email, name: "", password: password))
+                            
+                            switch status{
+                            case .fail:
                                 errorMessage = "Invalid Credentials"
-                            }
-                            else{
+                            case .success:
                                 withAnimation(.easeIn(duration: 0.5))
                                 {
                                     authStatus.isAuthenticated = true
                                 }
+                            case .networkError:
+                                errorMessage = "Network Error"
                             }
                         }
                         else{
@@ -95,6 +98,7 @@ struct LoginView: View {
                 Spacer()
          
             }
+        }.navigationTitle("")
             .gesture(DragGesture()
                             .onChanged { value in
                                 if value.translation.height > 0 {
@@ -102,7 +106,6 @@ struct LoginView: View {
                                 }
                             }
                         )
-        }.navigationTitle("")
         
         
     }

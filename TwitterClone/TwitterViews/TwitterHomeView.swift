@@ -10,10 +10,10 @@ import SwiftUI
 struct TwitterHomeView: View {
     @State private var isClicked = false
     @Binding var isProfilePictureClicked : Bool
-    @State private var isRefreshing = false // Refreshing
-    @State private var spacerLength = CGFloat(100)//For Spacer When Refreshing
+    @State private var isRefreshing = false
+    @State private var spacerLength = CGFloat(100)
     @EnvironmentObject var tweets : TweetData
-//    @ObservedObject var tweets = TweetData()
+
     var body: some View {
         ZStack(alignment:.top){
             TwitterTopBar(isClicked: $isProfilePictureClicked)
@@ -39,9 +39,7 @@ struct TwitterHomeView: View {
                         spacerLength = CGFloat(150)
                         //Replace below code with Refresing Code
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            Task{
                                 tweets.refreshTweets()
-                            }
                             self.isRefreshing = false
                             withAnimation(.linear(duration: 0.2))
                             {
@@ -100,13 +98,16 @@ struct TwitterHomeView: View {
         }
         
         .sheet(isPresented: $isClicked,onDismiss: {
-            Task{
+            withAnimation(.default)
+            {
                 tweets.refreshTweets()
             }
+            
+
         },  content: {
             NewTweetSheet(isClosed: $isClicked)
         })
-        .onAppear {
+        .task {
             tweets.refreshTweets()
         }
         

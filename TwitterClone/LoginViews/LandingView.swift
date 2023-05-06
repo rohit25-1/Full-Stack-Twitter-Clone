@@ -16,7 +16,7 @@ struct LandingView: View {
                 Spacer()
                 Text("See what's happening in the world right now.")
                     .font(.largeTitle)
-                    .fontWeight(.heavy)
+                    .fontWeight(.bold)
                     .frame(width: 290)
                 Spacer()
                 Button(action: {
@@ -39,7 +39,7 @@ struct LandingView: View {
                     Text("Create account")
                         .foregroundColor(.white)
                         .font(.title2)
-                        .fontWeight(.heavy)
+                        .fontWeight(.bold)
                         .frame(width: 330)
                         .padding(.vertical)
                         .background(Color(.systemBlue))
@@ -80,7 +80,7 @@ struct CustomJoiningButtons: View {
             Text(description)
                 .foregroundColor(.primary)
                 .font(.title2)
-                .fontWeight(.heavy)
+                .fontWeight(.bold)
             
         }.frame(width: 330)
             .padding(.vertical)

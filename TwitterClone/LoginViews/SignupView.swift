@@ -19,14 +19,14 @@ struct SignupView: View {
             ZStack(alignment: .top){
                 TwitterTopBarWithoutImage()
                 VStack(spacing: 30){
-                
                     
-                        
+                    
+                    
                     Spacer()
-                        Text("Sign Up to Twitter")
-                            .font(.system(size: 30, weight: .heavy))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal,30)
+                    Text("Sign Up to Twitter")
+                        .font(.system(size: 30, weight: .heavy))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal,30)
                     VStack(spacing:20){
                         Text(message)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -87,19 +87,23 @@ struct SignupView: View {
                         Task {
                             if(email != "" && password != "")
                             {
-                                if(await !network.registerRequest(formData: LoginParameters(_id: "01", email: email, name: name, password: password, username: username)))
-                                {
+                                
+                                let status = await network.registerRequest(formData: LoginParameters(_id: "01", email: email, name: name, password: password, username: username))
+                                
+                                switch status{
+                                case .fail:
                                     message = "Error Registering User"
-                                }
-                                else{
+                                case .success:
                                     isRegistered = true
+                                case .networkError:
+                                    message = "Network Error"
                                 }
                             }
                             else{
                                 message = "Enter All Values"
                             }
                         }
-
+                        
                     } label: {
                         Text("Sign up")
                             .font(.title3)
@@ -110,21 +114,22 @@ struct SignupView: View {
                             .cornerRadius(50)
                     }
                     Spacer()
-             
+                    
                 }
             }.navigationDestination(isPresented: $isRegistered) {
                 LoginView()
             }
             .navigationTitle("")
-            .gesture(DragGesture()
-                            .onChanged { value in
-                                if value.translation.height > 0 {
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }
-                            }
-                        )
-            }
             
+        }
+        .gesture(DragGesture()
+            .onChanged { value in
+                if value.translation.height > 0 {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+            }
+        )
+        
         
         
     }

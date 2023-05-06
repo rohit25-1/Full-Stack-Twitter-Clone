@@ -8,11 +8,6 @@
 import Foundation
 
 
-struct TweetRequest : Codable{
-    var tweet : String
-}
-
-
 class Authenticate : ObservableObject{
     @Published var isAuthenticated = false
     @Published var profilepicture = ""

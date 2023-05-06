@@ -18,19 +18,22 @@ struct TwitterCloneApp: App {
             {
                 TwitterTabView()
                     .environmentObject(authStatus)
-                    .onAppear {
-                        tweets.refreshTweets()
+                    .task {
+                        withAnimation(.default)
+                        {
+                            tweets.refreshTweets()
+                        }
+                        
                     }
-                
             }
             else{
                 if(isLoading)
                 {
                     ProgressView()
-                        .onAppear {
+                        .task {
                             let network = NetworkCalls()
                             Task{
-                                 if(await !network.isLoggedIn())
+                                if(await !network.isLoggedIn())
                                 {
                                     isLoading = false
                                 }
@@ -38,16 +41,17 @@ struct TwitterCloneApp: App {
                                     authStatus.isAuthenticated = true
                                     tweets.refreshTweets()
                                 }
-
+                                
                             }
                         }
                     
                 }
                 else{
-                    LandingView().environmentObject(authStatus)
+                    LandingView()
+                        .environmentObject(authStatus)
                 }
                 
-
+                
             }
         }
     }

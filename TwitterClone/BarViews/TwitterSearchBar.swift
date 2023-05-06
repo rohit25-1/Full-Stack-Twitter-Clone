@@ -77,16 +77,19 @@ struct TwitterSearchBar: View {
                         .overlay(alignment: .trailing, content: {
                             if(isEditing)
                             {
-                                Image(systemName: "x.circle.fill")
-                                    .padding(.horizontal,10)
-                                    .foregroundColor(.gray)
-                                    .onTapGesture {
-                                        withAnimation(.linear(duration: 0.2))
-                                        {
-                                            searchField = ""
-                                            
-                                        }
+                                Button {
+                                    withAnimation(.linear(duration: 0.2))
+                                    {
+                                        searchField = ""
+                                        
                                     }
+                                } label: {
+                                    Image(systemName: "x.circle.fill")
+                                        .padding(.horizontal,10)
+                                        .foregroundColor(.gray)
+                                }
+
+
                             }
                             
                         })
