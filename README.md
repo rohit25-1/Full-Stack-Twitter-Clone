@@ -22,7 +22,7 @@ $ cd Twitter-API
 
 3) Open Project in Xcode
 
-4) Run The Server From Twitter-API Folder
+4) Start the server: In the terminal, run the following command from the Twitter-API directory to start the server:
 
 ```bash
 node index.js
