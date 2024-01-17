@@ -18,9 +18,8 @@ enum requestCodes{
 
 
 struct NetworkCalls {
-    let auth = Authenticate()
+    let auth = TweetData()
     let defaults = UserDefaults.standard
-
     func loginRequest(formData: LoginParameters) async -> requestCodes
     {
         let url = URL(string: "http://localhost:3000/login")!
@@ -256,6 +255,34 @@ struct NetworkCalls {
             print(error)
         }
          return TwitterDataModel(profilepicture: "", name: "", username: "")
+    }
+    
+    func userList() async -> [TwitterDataModel]{
+        guard let url = URL(string: "http://localhost:3000/user-list") else {  return [TwitterDataModel(profilepicture: "", name: "", username: "")] }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        guard let token = (defaults.string(forKey: "jwt"))
+        else{
+            return [TwitterDataModel(profilepicture: "", name: "", username: "")]
+        }
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        do{
+            let (data, resp) = try await URLSession.shared.data(for: request)
+            let httpResponse = resp as! HTTPURLResponse
+            if(httpResponse.statusCode != 200)
+            {
+                print("Error Logging")
+                 return [TwitterDataModel(profilepicture: "", name: "", username: "")]
+            }
+            let userData = try JSONDecoder().decode([TwitterDataModel].self, from: data)
+            print(userData)
+            return userData
+        }
+        catch{
+            print(error)
+        }
+         return [TwitterDataModel(profilepicture: "", name: "", username: "")]
     }
 
 

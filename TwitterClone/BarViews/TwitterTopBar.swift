@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TwitterTopBar: View {
     @Binding var isClicked : Bool
-    @ObservedObject var userData = Authenticate()
     @EnvironmentObject var tweets : TweetData
     var body: some View {
         ZStack{
@@ -27,10 +26,6 @@ struct TwitterTopBar: View {
                     }
                     
                 }, label: {
-                    //                    Image("profile-picture")
-                    //                        .resizable()
-                    //                        .frame(width: 40, height: 40)
-                    //                        .cornerRadius(50)
                     AsyncImage(url: URL(string: tweets.userData.profilepicture)) { Image in
                         Image
                             .resizable()

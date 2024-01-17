@@ -12,5 +12,7 @@ struct TwitterDataModel : Decodable, Hashable{
     let profilepicture: String
     let name: String
     let username : String
+    
+    
 }
  

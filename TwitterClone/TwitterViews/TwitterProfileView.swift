@@ -12,6 +12,16 @@ struct TwitterProfileView: View {
     @EnvironmentObject var tweets : TweetData
     var body: some View {
         VStack{
+            HStack{
+                Text("Profile Picture")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding()
+                Spacer()
+            }
+            
+                
+            Spacer()
             Button {
                 openSheet = true
             } label: {
@@ -27,7 +37,7 @@ struct TwitterProfileView: View {
                         .clipShape(Circle())
                 }
             }
-
+            Spacer()
             
         }.sheet(isPresented: $openSheet, onDismiss: {
             tweets.refreshTweets()
@@ -44,5 +54,6 @@ struct TwitterProfileView: View {
 struct TwitterProfileView_Previews: PreviewProvider {
     static var previews: some View {
         TwitterProfileView()
+            .environmentObject(TweetData())
     }
 }

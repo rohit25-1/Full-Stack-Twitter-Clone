@@ -9,9 +9,7 @@ import SwiftUI
 
 struct TwitterSideView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var authStatus: Authenticate
     @EnvironmentObject var tweets : TweetData
-    //    @ObservedObject var tweets = TweetData()
     var body: some View {
         HStack{
             VStack(alignment:.leading){
@@ -68,7 +66,7 @@ struct TwitterSideView: View {
                     {
                         let defaults = UserDefaults.standard
                         defaults.removeObject(forKey: "jwt")
-                        authStatus.isAuthenticated = false
+                        tweets.isAuthenticated = false
                     }
                     let network = NetworkCalls()
                     Task{
@@ -91,8 +89,6 @@ struct TwitterSideView: View {
                 .background(.regularMaterial)
             
         }
-        
-        
         
     }
 }

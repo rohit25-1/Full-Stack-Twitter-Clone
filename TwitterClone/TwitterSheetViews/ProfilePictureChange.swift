@@ -38,10 +38,9 @@ struct ProfilePictureChange: View {
                     
                 }
                 
-            }.onChange(of: profilePicture) { newItem in
-                Task {
-                    // Retrieve selected asset in the form of Data
-                    if let data = try await newItem?.loadTransferable(type: Data.self) {
+            }.onChange(of: profilePicture) {
+                Task{
+                    if let data = try? await profilePicture?.loadTransferable(type: Data.self) {
                         selectedImageData = data
                     }
                 }
@@ -76,7 +75,7 @@ struct ProfilePictureChange: View {
                     .bold()
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-
+            
         }
         .alert(isPresented: $isImageSelected) {
             Alert(title: Text("Error"), message: Text("Select An Image"), dismissButton: .default(Text("OK")))

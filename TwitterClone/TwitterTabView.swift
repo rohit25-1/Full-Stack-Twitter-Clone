@@ -10,8 +10,8 @@ import SwiftUI
 struct TwitterTabView: View {
     @State private var selectedTab = 0
     @State var isOpen = false
-    @EnvironmentObject var authStatus: Authenticate
-    @State var tweets = TweetData()
+    @EnvironmentObject var tweets : TweetData
+    
     var body: some View {
         NavigationStack{
             TabView(selection: $selectedTab, content: {
@@ -39,7 +39,7 @@ struct TwitterTabView: View {
             })
             .slideInView(isActive: $isOpen,edge: .leading) {
                 TwitterSideView()
-                    .environmentObject(authStatus)
+                    .environmentObject(tweets)
             }
             
         }.environmentObject(tweets)

@@ -9,15 +9,15 @@ import SwiftUI
 
 @main
 struct TwitterCloneApp: App {
-    @StateObject var authStatus = Authenticate()
-    @ObservedObject var tweets = TweetData()
+    @StateObject var tweets = TweetData()
     @State var isLoading = true
+    
     var body: some Scene {
         WindowGroup {
-            if(authStatus.isAuthenticated)
+            if(tweets.isAuthenticated)
             {
                 TwitterTabView()
-                    .environmentObject(authStatus)
+                    .environmentObject(tweets)
                     .task {
                         withAnimation(.default)
                         {
@@ -38,7 +38,7 @@ struct TwitterCloneApp: App {
                                     isLoading = false
                                 }
                                 else{
-                                    authStatus.isAuthenticated = true
+                                    tweets.isAuthenticated = true
                                     tweets.refreshTweets()
                                 }
                                 
@@ -48,7 +48,7 @@ struct TwitterCloneApp: App {
                 }
                 else{
                     LandingView()
-                        .environmentObject(authStatus)
+                        .environmentObject(tweets)
                 }
                 
                 

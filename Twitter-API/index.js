@@ -211,6 +211,19 @@ app.get("/userdata", async (req, res) => {
   }
 });
 
+app.get("/user-list", async (req, res) => {
+  try {
+    const header = req.headers["authorization"];
+    const email = jwt.verify(header, "SECRET");
+    const userList = await users
+      .find({ email: { $ne: email } })
+      .limit(10)
+      .select({ password: 0, _id: 0, email: 0 });
+    console.log(userList);
+    res.send(userList);
+  } catch (error) {}
+});
+
 app.get("/status", async (req, res) => {
   res.status(200);
 });

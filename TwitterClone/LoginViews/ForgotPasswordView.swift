@@ -13,10 +13,23 @@ struct ForgotPasswordView: View {
     @State var confirmPassword: String = ""
     @State private var errorMessage = ""
     @State private var isRegistered = false
+    @FocusState private var usernamIsFocused: Bool
+    @FocusState private var passwordIsFocused : Bool
     var body: some View {
         NavigationStack{
             ZStack(alignment: .top){
                 TwitterTopBarWithoutImage()
+                Rectangle()
+                    .fill(.background)
+                    .onTapGesture {
+                        usernamIsFocused = false
+                        passwordIsFocused = false
+                    }
+                    .gesture(DragGesture().onChanged{value in
+                        if value.translation.height > 0 {
+                            usernamIsFocused = false
+                            passwordIsFocused = false
+                        }})
                 VStack(spacing: 50){
                     
                     
@@ -104,15 +117,6 @@ struct ForgotPasswordView: View {
             .navigationDestination(isPresented: $isRegistered) {
                 LoginView()
             }
-            .gesture(DragGesture()
-                .onChanged { value in
-                    if value.translation.height > 0 {
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }
-                }
-            )
-        
-        
         
     }
 }

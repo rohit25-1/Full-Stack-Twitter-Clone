@@ -78,7 +78,7 @@ public struct SlideInView<Content: View, Container: View>: View {
                             .ignoresSafeArea()
                             .onTapGesture {
                                 if options.shouldDismissUponExternalTap {
-                                    isActive.toggle()
+                                    isActive = false
                                 }
                             }
                         content()
@@ -98,18 +98,18 @@ public struct SlideInView<Content: View, Container: View>: View {
                                     if abs(horizontalAmount) > abs(verticalAmount) {
                                         if horizontalAmount < 0 {
                                             if edge == .leading {
-                                                isActive.toggle()
+                                                isActive = false
                                             }
                                         } else if edge == .trailing {
-                                            isActive.toggle()
+                                            isActive = false
                                         }
                                     } else {
                                         if verticalAmount < 0 {
                                             if edge == .top {
-                                                isActive.toggle()
+                                                isActive = false
                                             }
                                         } else if edge == .bottom {
-                                            isActive.toggle()
+                                            isActive = false
                                         }
                                     }
                                 }

@@ -29,10 +29,8 @@
 		F997D4F629D378E100A6F141 /* NewTweetSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997D4F529D378E100A6F141 /* NewTweetSheet.swift */; };
 		F998DE142A037E5A00B989A1 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F998DE132A037E5A00B989A1 /* TokenModel.swift */; };
 		F998DE182A037E7A00B989A1 /* TweetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F998DE172A037E7A00B989A1 /* TweetRequest.swift */; };
-		F998DE1C2A0388B800B989A1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F998DE1B2A0388B800B989A1 /* NetworkError.swift */; };
 		F9A6231629D84DAE0052781C /* TwitterSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */; };
 		F9C005192A02DDB100E19352 /* SlideInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C005182A02DDB100E19352 /* SlideInView.swift */; };
-		F9C3FD1A29F68D230018D222 /* Authenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3FD1929F68D230018D222 /* Authenticate.swift */; };
 		F9C4AC8529DA0AE9000C4C62 /* TwitterNotificationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C4AC8429DA0AE9000C4C62 /* TwitterNotificationBar.swift */; };
 		F9C4AC8729DA0DEF000C4C62 /* TwitterMessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C4AC8629DA0DEF000C4C62 /* TwitterMessageBar.swift */; };
 		F9ED939529F1B22700585BBD /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9ED939429F1B22700585BBD /* LandingView.swift */; };
@@ -65,10 +63,8 @@
 		F997D4F529D378E100A6F141 /* NewTweetSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTweetSheet.swift; sourceTree = "<group>"; };
 		F998DE132A037E5A00B989A1 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		F998DE172A037E7A00B989A1 /* TweetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetRequest.swift; sourceTree = "<group>"; };
-		F998DE1B2A0388B800B989A1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F9A6231529D84DAE0052781C /* TwitterSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSearchBar.swift; sourceTree = "<group>"; };
 		F9C005182A02DDB100E19352 /* SlideInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInView.swift; sourceTree = "<group>"; };
-		F9C3FD1929F68D230018D222 /* Authenticate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticate.swift; sourceTree = "<group>"; };
 		F9C3FD1B29F697DF0018D222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F9C4AC8429DA0AE9000C4C62 /* TwitterNotificationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterNotificationBar.swift; sourceTree = "<group>"; };
 		F9C4AC8629DA0DEF000C4C62 /* TwitterMessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMessageBar.swift; sourceTree = "<group>"; };
@@ -171,9 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F946B51A29FAB20300E6AABB /* NetworkCalls.swift */,
-				F9C3FD1929F68D230018D222 /* Authenticate.swift */,
 				F946B51E29FAB27F00E6AABB /* TweetData.swift */,
-				F998DE1B2A0388B800B989A1 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -231,7 +225,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					F997D4D929D3678B00A6F141 = {
 						CreatedOnToolsVersion = 14.2;
@@ -275,12 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9C3FD1A29F68D230018D222 /* Authenticate.swift in Sources */,
 				F915E7B729DAD05E00568831 /* TwitterSideView.swift in Sources */,
 				F997D4EE29D36E8000A6F141 /* TwitterSearchView.swift in Sources */,
 				F918F87529D76D6800C73580 /* TwitterTopBar.swift in Sources */,
 				F997D4E029D3678B00A6F141 /* TwitterTabView.swift in Sources */,
-				F998DE1C2A0388B800B989A1 /* NetworkError.swift in Sources */,
 				F9ED939B29F1C38100585BBD /* SignupView.swift in Sources */,
 				F997D4DE29D3678B00A6F141 /* TwitterCloneApp.swift in Sources */,
 				F986C44F29F07B94009C4CE5 /* TwitterProfileView.swift in Sources */,
@@ -347,6 +339,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -407,6 +400,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -433,7 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TwitterClone/Preview Content\"";
-				DEVELOPMENT_TEAM = XR73T234QY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TwitterClone/Info.plist;
@@ -442,6 +436,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,7 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TwitterClone/Preview Content\"";
-				DEVELOPMENT_TEAM = XR73T234QY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TwitterClone/Info.plist;
@@ -472,6 +467,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

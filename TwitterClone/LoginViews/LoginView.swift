@@ -10,19 +10,33 @@ import SwiftUI
 struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
-    @EnvironmentObject var authStatus: Authenticate
+    @EnvironmentObject var authStatus: TweetData
     @State private var errorMessage = ""
+    @FocusState private var usernamIsFocused: Bool
+    @FocusState private var passwordIsFocused : Bool
     var body: some View {
         ZStack(alignment: .top){
             TwitterTopBarWithoutImage()
-            VStack(spacing: 50){
+            Rectangle()
+                .fill(.background)
+                .onTapGesture {
+                    usernamIsFocused = false
+                    passwordIsFocused = false
+                }
+                .gesture(DragGesture().onChanged{value in
+                    if value.translation.height > 0 {
+                        usernamIsFocused = false
+                        passwordIsFocused = false
+                    }})
             
-
+            VStack(spacing: 50){
+                
+                
                 Spacer()
-                    Text("Sign in to Twitter")
-                        .font(.system(size: 30, weight: .heavy))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal,30)
+                Text("Sign in to Twitter")
+                    .font(.system(size: 30, weight: .heavy))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal,30)
                 VStack(spacing:20){
                     Text(errorMessage)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -40,6 +54,7 @@ struct LoginView: View {
                         }
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .focused($usernamIsFocused)
                     
                     SecureField("Password", text: $password)
                         .font(.headline)
@@ -50,15 +65,16 @@ struct LoginView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.gray, lineWidth: 0.5)
                         }
+                        .focused($passwordIsFocused)
                     NavigationLink {
                         ForgotPasswordView()
                     } label: {
                         Text("Forgot password?")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal,37)
-                        .foregroundColor(Color(.systemBlue))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal,37)
+                            .foregroundColor(Color(.systemBlue))
                     }
-
+                    
                 }
                 
                 Spacer()
@@ -96,16 +112,10 @@ struct LoginView: View {
                         .cornerRadius(50)
                 }
                 Spacer()
-         
+                
             }
         }.navigationTitle("")
-            .gesture(DragGesture()
-                            .onChanged { value in
-                                if value.translation.height > 0 {
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }
-                            }
-                        )
+        
         
         
     }
