@@ -1,5 +1,28 @@
 const mongoose = require("mongoose");
 
+const commentSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  profilepicture: {
+    type: String,
+    default: "http://localhost:3000/assets/profile-pictures/default-image.png",
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const tweetSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -17,7 +40,13 @@ const tweetSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  comments: [commentSchema],
 });
 
-const registerTweet = new mongoose.model("Tweet", tweetSchema);
-module.exports = registerTweet;
+const Tweet = mongoose.model("Tweet", tweetSchema);
+module.exports = Tweet;
